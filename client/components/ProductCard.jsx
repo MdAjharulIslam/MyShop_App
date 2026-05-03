@@ -17,14 +17,14 @@ export default function ProductCard({ product, isBestSeller, rank }) {
       className="bg-[#0b0f14] border border-cyan-400/10 rounded-2xl overflow-hidden flex flex-col cursor-pointer group transition-all duration-300 hover:border-cyan-400/30 hover:-translate-y-1 font-['DM_Sans',sans-serif]"
     >
 
-      {/* Rank badge */}
+    
       {isBestSeller && rank && (
         <div className="absolute top-3 right-3 z-10 bg-cyan-400 text-[#020b18] px-3 py-1 rounded-lg text-[10px] font-['Orbitron',monospace] tracking-wide font-bold">
           🏆 #{rank}
         </div>
       )}
 
-      {/* Image */}
+    
       <div className="h-48 bg-[#111827] flex items-center justify-center overflow-hidden">
         {image ? (
           <img
@@ -37,34 +37,33 @@ export default function ProductCard({ product, isBestSeller, rank }) {
         )}
       </div>
 
-      {/* Content */}
+    
       <div className="p-4 flex flex-col flex-grow">
 
-        {/* Product name */}
+      
         <h3 className="text-base font-semibold text-white mb-2 truncate tracking-wide">
           {name}
         </h3>
 
-        {/* Price (brand accent style) */}
         <p className="text-cyan-400 font-bold text-lg mb-2 font-['Orbitron',monospace]">
           ${price?.toFixed(2) || '0.00'}
         </p>
 
-        {/* Stock */}
+       
         <p className={`text-sm mb-3 font-medium ${
           stock > 0 ? 'text-emerald-400' : 'text-red-400'
         }`}>
           {stock > 0 ? `In Stock: ${stock}` : 'Out of Stock'}
         </p>
 
-        {/* Sold info */}
+       
         {isBestSeller && totalSold && (
           <p className="mb-4 text-xs text-sky-200/60 tracking-wide">
             {totalSold.toLocaleString()} sold
           </p>
         )}
 
-        {/* Button */}
+        
         <div className="mt-auto">
           {stock > 0 ? (
             <button

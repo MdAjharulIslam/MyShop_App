@@ -68,7 +68,7 @@ export default function OrderPage() {
 
         <form onSubmit={handleOrder} className="space-y-5">
 
-          {/* Quantity */}
+          
           <div>
             <label className="block mb-1 text-sm text-gray-300">
               Quantity
@@ -83,7 +83,7 @@ export default function OrderPage() {
             />
           </div>
 
-          {/* Phone */}
+        
           <div>
             <label className="block mb-1 text-sm text-gray-300">
               Phone Number
@@ -98,7 +98,7 @@ export default function OrderPage() {
             />
           </div>
 
-          {/* Button */}
+         
           <button
             type="submit"
             disabled={loading}

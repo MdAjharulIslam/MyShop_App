@@ -12,16 +12,16 @@ export default function Banner({
   return (
     <div className="relative w-full min-h-[380px] sm:min-h-[440px] lg:min-h-[560px] xl:min-h-[640px] rounded-2xl overflow-hidden flex items-center justify-center bg-[#020b18]">
 
-      {/* Content */}
+   
       <div className="relative z-10 text-center px-6 sm:px-10 lg:px-14 py-12 w-full max-w-4xl mx-auto">
 
-        {/* Badge */}
+     
         <div className="inline-flex items-center gap-2 mb-6 px-3.5 py-1.5 rounded bg-cyan-400/8 border border-cyan-400/30 font-['Orbitron',monospace] text-[10px] tracking-[2.5px] text-cyan-400">
           <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
           TRENDING CHOICE
         </div>
 
-        {/* Title (wider X-axis + better line control) */}
+     
         <h1
           className="mb-4 leading-tight font-['Orbitron',monospace] font-black text-white mx-auto"
           style={{
@@ -36,7 +36,7 @@ export default function Banner({
           )}
         </h1>
 
-        {/* Subtitle (wider) */}
+        
         <p
           className="mb-9 mx-auto max-w-3xl leading-relaxed font-light tracking-wide text-sky-200/75"
           style={{ fontSize: 'clamp(14px, 2vw, 17px)' }}
@@ -44,7 +44,7 @@ export default function Banner({
           {subtitle}
         </p>
 
-        {/* Buttons */}
+       
         <div className="flex gap-3.5 justify-center flex-wrap">
           <Link href={buttonLink}>
             <button className="inline-flex items-center gap-2.5 rounded font-bold font-['Orbitron',monospace] text-[13px] tracking-wide bg-cyan-400 text-[#020b18] px-7 py-3.5 transition-all duration-200 hover:-translate-y-0.5">
@@ -62,7 +62,7 @@ export default function Banner({
           </Link>
         </div>
 
-        {/* Stats (unchanged) */}
+       
         <div className="flex gap-8 justify-center mt-9 pt-7 flex-wrap border-t border-cyan-400/10">
           {[['10K+', 'Products'], ['99%', 'Satisfaction'], ['24/7', 'Support']].map(([val, label], i, arr) => (
             <div key={i} className="flex items-center gap-8">

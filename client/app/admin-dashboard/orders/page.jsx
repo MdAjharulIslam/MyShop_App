@@ -54,7 +54,7 @@ export default function AdminOrdersPage() {
   return (
     <div className="min-h-screen bg-[#020b18] px-6 py-16">
 
-      {/* Header */}
+      
       <div className="text-center mb-14">
         <h1 className="text-4xl md:text-5xl font-black font-['Orbitron',monospace] text-white">
           Admin <span className="text-cyan-400">Orders</span>
@@ -64,7 +64,7 @@ export default function AdminOrdersPage() {
         </p>
       </div>
 
-      {/* Empty State */}
+      
       {orders.length === 0 ? (
         <div className="text-center text-sky-200/60">
           No orders found.
@@ -82,12 +82,12 @@ export default function AdminOrdersPage() {
                 className="bg-white/5 border border-cyan-400/20 backdrop-blur-xl rounded-3xl p-6 hover:border-cyan-400/40 hover:shadow-[0_0_25px_rgba(0,212,255,0.15)] transition-all duration-300"
               >
 
-                {/* Product Name */}
+                
                 <h2 className="text-xl font-bold text-white mb-4 font-['Orbitron',monospace] truncate">
                   {order.product?.name || 'Product Removed'}
                 </h2>
 
-                {/* Info */}
+             
                 <div className="space-y-2 text-sky-200/70 text-sm">
 
                   <p>
@@ -120,14 +120,14 @@ export default function AdminOrdersPage() {
                   </p>
                 </div>
 
-                {/* Status */}
+              
                 <div className="mt-5">
                   <span className="px-3 py-1 rounded-full text-xs font-bold bg-cyan-400/10 text-cyan-400 border border-cyan-400/30">
                     ORDERED
                   </span>
                 </div>
 
-                {/* Date */}
+               
                 <p className="text-xs text-sky-200/40 mt-5 border-t border-cyan-400/10 pt-4">
                   {new Date(order.createdAt).toLocaleString()}
                 </p>

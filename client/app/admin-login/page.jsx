@@ -42,12 +42,12 @@ export default function AdminLoginPage() {
 
       <div className="w-full max-w-md bg-[#0b0f14] border border-cyan-400/10 rounded-2xl p-8">
 
-        {/* Title */}
+        
         <h2 className="text-center text-2xl font-['Orbitron',monospace] font-bold text-white mb-6">
           Admin <span className="text-cyan-400">Login</span>
         </h2>
 
-        {/* Form */}
+        
         <form onSubmit={handleAdminLogin} className="space-y-5">
 
           <input
@@ -78,7 +78,7 @@ export default function AdminLoginPage() {
 
         </form>
 
-        {/* Back link */}
+      
         <p className="mt-6 text-center text-sm text-gray-400">
           <Link href="/" className="hover:text-cyan-400 transition">
             ← Back to Home

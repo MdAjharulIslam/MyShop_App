@@ -67,7 +67,7 @@ export default function LatestProduct() {
   return (
     <section className="relative w-full py-24 bg-[#020b18] overflow-hidden rounded-3xl">
 
-      {/* ❌ removed all background glow elements */}
+      
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
 
@@ -113,7 +113,7 @@ export default function LatestProduct() {
 
         <div className="text-center">
           <Link href="/allProducts">
-            <button className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-cyan-400 text-[#020b18] font-bold text-lg hover:-translate-y-1 transition-all duration-300">
+            <button className="inline-flex items-center gap-3 px-10 py-5 font-['Orbitron',monospace] rounded-2xl bg-cyan-400 text-[#020b18] font-bold text-lg hover:-translate-y-1 transition-all duration-300">
               View All Products
               <svg
                 className="w-5 h-5"

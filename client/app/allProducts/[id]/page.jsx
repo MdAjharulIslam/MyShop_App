@@ -55,7 +55,7 @@ export default function ProductDetailsPage() {
 
       <div className="max-w-6xl mx-auto">
 
-        {/* Back */}
+        
         <Link
           href="/allProducts"
           className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-400 mb-10 transition"
@@ -65,7 +65,7 @@ export default function ProductDetailsPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-          {/* Image */}
+       
           <div className="bg-[#0b0f14] border border-cyan-400/10 rounded-2xl overflow-hidden">
             <img
               src={product.image || "https://via.placeholder.com/600"}
@@ -74,25 +74,24 @@ export default function ProductDetailsPage() {
             />
           </div>
 
-          {/* Info */}
+         
           <div className="space-y-6">
 
-            {/* Category */}
+           
             <span className="inline-block px-3 py-1 text-[11px] tracking-widest uppercase border border-cyan-400/20 text-cyan-400 rounded">
               {product.category || "General"}
             </span>
 
-            {/* Title */}
             <h1 className="text-3xl lg:text-5xl font-['Orbitron',monospace] font-bold">
               {product.name}
             </h1>
 
-            {/* Price */}
+           
             <p className="text-4xl font-bold text-cyan-400 font-['Orbitron',monospace]">
               ${product.price}
             </p>
 
-            {/* Stock */}
+            
             <p className={`text-sm ${
               product.stock > 0 ? "text-emerald-400" : "text-red-400"
             }`}>
@@ -101,12 +100,12 @@ export default function ProductDetailsPage() {
                 : "Out of Stock"}
             </p>
 
-            {/* Description */}
+           
             <p className="text-gray-400 leading-relaxed">
               {product.description || "No description available."}
             </p>
 
-            {/* Buttons */}
+         
             <div className="flex gap-4 pt-4">
 
               <Link

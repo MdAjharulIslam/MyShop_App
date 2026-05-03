@@ -35,7 +35,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-16">
 
-            {/* Logo */}
+           
             <Link
               href="/"
               className="font-['Orbitron',monospace] font-black text-xl tracking-wide text-white no-underline transition-all duration-200 hover:[text-shadow:0_0_30px_rgba(0,212,255,0.6)]"
@@ -44,10 +44,10 @@ export default function Navbar() {
               My<span className="text-cyan-400">Shop</span>
             </Link>
 
-            {/* Desktop Nav */}
+         
             <div className="hidden md:flex items-center gap-7">
 
-              {/* Pulse dot */}
+             
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
 
               {menuItems.map((item) => (
@@ -78,7 +78,7 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Mobile toggle */}
+     
             <div className="md:hidden">
               <button
                 onClick={() => setMenuOpen(!menuOpen)}

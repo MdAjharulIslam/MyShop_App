@@ -59,11 +59,10 @@ export default function AddProductPage() {
   return (
     <div className="min-h-screen bg-[#020b18] flex items-center justify-center px-4 py-16">
 
-      {/* background glow removed (clean version) */}
       
       <div className="w-full max-w-2xl">
 
-        {/* Header */}
+       
         <div className="text-center mb-10">
           <h1 className="text-4xl font-black text-white font-['Orbitron',monospace]">
             Add <span className="text-cyan-400">Product</span>
@@ -73,7 +72,7 @@ export default function AddProductPage() {
           </p>
         </div>
 
-        {/* Form Card */}
+       
         <form
           onSubmit={handleSubmit}
           className="bg-white/5 border border-cyan-400/20 backdrop-blur-xl rounded-3xl p-8 space-y-5 shadow-2xl"
@@ -117,7 +116,7 @@ export default function AddProductPage() {
             />
           </div>
 
-          {/* File Upload */}
+          
           <div className="border border-dashed border-cyan-400/30 rounded-xl p-5 text-center">
             <input
               type="file"
@@ -128,7 +127,6 @@ export default function AddProductPage() {
             />
           </div>
 
-          {/* Submit */}
           <button
             type="submit"
             disabled={loading}

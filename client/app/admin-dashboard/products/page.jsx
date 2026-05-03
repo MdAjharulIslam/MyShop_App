@@ -122,7 +122,7 @@ export default function AdminProductsPage() {
         </p>
       </div>
 
-      {/* Products Grid */}
+      
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
 
         {products.map(product => (
@@ -150,7 +150,7 @@ export default function AdminProductsPage() {
               </span>
             </p>
 
-            {/* Buttons */}
+           
             <div className="flex gap-3 mt-5">
 
               <button
@@ -173,7 +173,7 @@ export default function AdminProductsPage() {
 
       </div>
 
-      {/* EDIT MODAL */}
+      
       {selectedProduct && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
 

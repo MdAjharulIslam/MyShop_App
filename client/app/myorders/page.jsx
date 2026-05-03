@@ -41,7 +41,7 @@ export default function MyOrdersPage() {
     fetchOrders(savedToken)
   }, [fetchOrders])
 
-  /* Loading */
+  
   if (loading) {
     return (
       <div className="min-h-screen bg-[#020b18] flex items-center justify-center text-gray-400">
@@ -55,12 +55,12 @@ export default function MyOrdersPage() {
 
       <div className="max-w-6xl mx-auto">
 
-        {/* Title */}
+        
         <h1 className="text-3xl md:text-4xl font-['Orbitron',monospace] font-bold text-center mb-10">
           My <span className="text-cyan-400">Orders</span>
         </h1>
 
-        {/* Empty state */}
+        
         {orders.length === 0 ? (
           <div className="text-center py-20 text-gray-400">
             <div className="text-5xl mb-4">📦</div>
@@ -68,7 +68,7 @@ export default function MyOrdersPage() {
             <p>Start shopping to see your orders here.</p>
           </div>
         ) : (
-          /* Orders grid */
+          
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
             {orders.map(order => (
@@ -77,17 +77,17 @@ export default function MyOrdersPage() {
                 className="bg-[#0b0f14] border border-cyan-400/10 rounded-2xl p-5 flex flex-col justify-between hover:border-cyan-400/30 transition"
               >
 
-                {/* Product name */}
+                
                 <h2 className="text-lg font-semibold text-white mb-2 truncate">
                   {order.product?.name || 'Product removed'}
                 </h2>
 
-                {/* Description */}
+                
                 <p className="text-sm text-gray-400 mb-4 line-clamp-3">
                   {order.product?.description}
                 </p>
 
-                {/* Status */}
+               
                 <div className="flex gap-2 mb-4 flex-wrap">
 
                   <span className={`text-xs px-3 py-1 rounded border ${
@@ -104,17 +104,17 @@ export default function MyOrdersPage() {
 
                 </div>
 
-                {/* Price */}
+              
                 <p className="text-xl font-bold text-cyan-400 font-['Orbitron',monospace]">
                   ${(order.product?.price || 0) * (order.quantity || 1)}
                 </p>
 
-                {/* Phone */}
+              
                 <p className="text-xs text-gray-400 mt-2">
                   Phone: {order.phone}
                 </p>
 
-                {/* Date */}
+            
                 <p className="text-[10px] text-gray-500 mt-4 border-t border-cyan-400/10 pt-3">
                   Ordered: {new Date(order.createdAt).toLocaleDateString()}
                 </p>

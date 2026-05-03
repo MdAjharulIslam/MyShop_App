@@ -82,18 +82,18 @@ export default function AuthPage() {
 
       <div className="relative min-h-screen bg-[#020b18] flex items-center justify-center px-4 font-['DM_Sans',sans-serif] overflow-hidden">
 
-        {/* Animated grid */}
+        
         <div className="absolute inset-0 pointer-events-none auth-grid" />
 
-        {/* Ambient orbs */}
+        
         <div className="absolute -top-20 -left-10 w-72 h-72 rounded-full pointer-events-none bg-blue-600/20 blur-[70px]" />
         <div className="absolute -bottom-20 -right-10 w-64 h-64 rounded-full pointer-events-none bg-cyan-400/10 blur-[60px]" />
         <div className="absolute top-1/2 left-1/4 w-32 h-32 rounded-full pointer-events-none bg-purple-600/15 blur-[50px] -translate-y-1/2" />
 
-        {/* Card */}
+        
         <div className="relative z-10 w-full max-w-md">
 
-          {/* Corner accents */}
+          
           <div className="absolute -top-2 -left-2 w-10 h-10 border-t-2 border-l-2 border-cyan-400/50 rounded-tl-sm" />
           <div className="absolute -top-2 -right-2 w-10 h-10 border-t-2 border-r-2 border-cyan-400/50 rounded-tr-sm" />
           <div className="absolute -bottom-2 -left-2 w-10 h-10 border-b-2 border-l-2 border-cyan-400/50 rounded-bl-sm" />
@@ -101,7 +101,6 @@ export default function AuthPage() {
 
           <div className="bg-white/3 border border-cyan-400/15 rounded-2xl px-8 py-10 backdrop-blur-sm">
 
-            {/* Logo */}
             <div className="text-center mb-8">
               <Link href="/">
                 <span className="font-['Orbitron',monospace] font-black text-2xl text-white tracking-wide auth-logo-glow">
@@ -110,7 +109,7 @@ export default function AuthPage() {
               </Link>
             </div>
 
-            {/* Badge */}
+           
             <div className="flex justify-center mb-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-cyan-400/10 border border-cyan-400/30 font-['Orbitron',monospace] text-[10px] tracking-[2.5px] text-cyan-400">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 auth-pulse" />
@@ -118,7 +117,7 @@ export default function AuthPage() {
               </div>
             </div>
 
-            {/* Title */}
+            
             <h2
               className="text-center font-['Orbitron',monospace] font-black text-white text-2xl sm:text-3xl mb-8 leading-none"
               style={{ textShadow: '0 0 30px rgba(0,212,255,0.2)' }}
@@ -126,7 +125,6 @@ export default function AuthPage() {
               {isLogin ? 'Welcome ' : 'Join '}<span className="text-cyan-400">{isLogin ? 'Back' : 'Us'}</span>
             </h2>
 
-            {/* Toggle tabs */}
             <div className="flex bg-white/5 border border-cyan-400/15 rounded-lg p-1 mb-8">
               <button
                 onClick={() => setIsLogin(true)}
@@ -150,7 +148,6 @@ export default function AuthPage() {
               </button>
             </div>
 
-            {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
 
               {!isLogin && (
@@ -216,14 +213,14 @@ export default function AuthPage() {
               </button>
             </form>
 
-            {/* Divider */}
+          
             <div className="flex items-center gap-3 my-6">
               <div className="flex-1 h-px bg-cyan-400/10" />
               <span className="text-[10px] tracking-[2px] text-sky-300/30 font-['Orbitron',monospace]">OR</span>
               <div className="flex-1 h-px bg-cyan-400/10" />
             </div>
 
-            {/* Switch mode */}
+         
             <p className="text-center text-sm text-sky-200/50 font-light">
               {isLogin ? "Don't have an account?" : 'Already have an account?'}{' '}
               <button
@@ -234,7 +231,7 @@ export default function AuthPage() {
               </button>
             </p>
 
-            {/* Admin link */}
+          
             {isLogin && (
               <p className="mt-3 text-center text-[11px] text-sky-300/30 tracking-wide">
                 <Link

@@ -28,7 +28,7 @@ export default function AllProductsPage() {
     fetchProducts()
   }, [])
 
-  /* Loading */
+  
   if (loading) {
     return (
       <div className="min-h-screen bg-[#020b18] flex items-center justify-center text-gray-400">
@@ -37,7 +37,7 @@ export default function AllProductsPage() {
     )
   }
 
-  /* Error */
+ 
   if (error) {
     return (
       <div className="min-h-screen bg-[#020b18] flex items-center justify-center text-red-400">
@@ -51,7 +51,7 @@ export default function AllProductsPage() {
 
       <div className="max-w-7xl mx-auto">
 
-        {/* Header */}
+        
         <div className="text-center mb-12">
 
           <h1 className="text-3xl md:text-5xl font-['Orbitron',monospace] font-bold">
@@ -64,13 +64,13 @@ export default function AllProductsPage() {
 
         </div>
 
-        {/* Empty state */}
+        
         {products.length === 0 ? (
           <div className="text-center text-gray-400 py-20">
             No products found.
           </div>
         ) : (
-          /* Grid */
+         
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
             {products.map((product) => (
