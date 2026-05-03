@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 
 export const metadata = {
-  title: 'My Next.js App',
+  title: 'MyShop',
   description: 'E-commerce app with Navbar',
 };
 
