@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 export const metadata = {
   title: 'MyShop',
-  description: 'E-commerce app with Navbar',
+  description: 'E-commerce app ',
 };
 
 export default function RootLayout({ children }) {
