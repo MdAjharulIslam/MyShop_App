@@ -20,64 +20,71 @@ export default function AdminLoginPage() {
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/admin/login`,
-        { email, password } 
+        { email, password }
       )
 
       if (res.data.success) {
         localStorage.setItem('adminToken', res.data.token)
         toast.success('Admin login successful 🎉')
-
-        
-        window.location.href = '/admin-dashboard'
+        router.push('/admin-dashboard')
       } else {
-        toast.error(res.data.message || 'Invalid email or password ❌')
+        toast.error(res.data.message || 'Invalid credentials ❌')
       }
     } catch (err) {
       toast.error(err.response?.data?.message || 'Something went wrong ❌')
-      console.error('Admin Login Error:', err)
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-xl">
-        <h2 className="text-2xl font-bold text-center mb-6 text-red-600">
-          Admin Login
+    <div className="min-h-screen bg-[#020b18] flex items-center justify-center px-4 font-['DM_Sans',sans-serif]">
+
+      <div className="w-full max-w-md bg-[#0b0f14] border border-cyan-400/10 rounded-2xl p-8">
+
+        {/* Title */}
+        <h2 className="text-center text-2xl font-['Orbitron',monospace] font-bold text-white mb-6">
+          Admin <span className="text-cyan-400">Login</span>
         </h2>
 
-        <form onSubmit={handleAdminLogin} className="space-y-4">
+        {/* Form */}
+        <form onSubmit={handleAdminLogin} className="space-y-5">
+
           <input
             type="email"
             placeholder="Admin Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full px-3 py-2 bg-[#111827] border border-cyan-400/10 rounded-lg text-white outline-none focus:border-cyan-400/40"
             required
           />
+
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full px-3 py-2 bg-[#111827] border border-cyan-400/10 rounded-lg text-white outline-none focus:border-cyan-400/40"
             required
           />
+
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition-colors"
+            className="w-full bg-cyan-400 text-[#020b18] py-2.5 rounded-xl font-bold font-['Orbitron',monospace] text-sm tracking-widest hover:bg-cyan-300 transition disabled:opacity-50"
           >
-            {loading ? 'Logging in...' : 'Login as Admin'}
+            {loading ? 'LOGGING IN...' : 'LOGIN AS ADMIN'}
           </button>
+
         </form>
 
-        <p className="mt-4 text-center text-sm">
-          <Link href="/" className="text-blue-600 hover:underline">
-            Back to Home
+        {/* Back link */}
+        <p className="mt-6 text-center text-sm text-gray-400">
+          <Link href="/" className="hover:text-cyan-400 transition">
+            ← Back to Home
           </Link>
         </p>
+
       </div>
     </div>
   )

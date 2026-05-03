@@ -20,7 +20,6 @@ export default function AdminProductsPage() {
     description: '',
   })
 
-  
   const fetchProducts = async (authToken) => {
     try {
       const res = await axios.get(
@@ -38,13 +37,12 @@ export default function AdminProductsPage() {
     }
   }
 
-  
   useEffect(() => {
     const savedToken = localStorage.getItem('adminToken')
 
     if (!savedToken) {
       toast.error('Admin login required')
-      router.push('/login')
+      router.push('/admin-login')
       return
     }
 
@@ -52,7 +50,6 @@ export default function AdminProductsPage() {
     fetchProducts(savedToken)
   }, [])
 
-  
   const handleDelete = async (id) => {
     if (!confirm('Are you sure you want to delete this product?')) return
 
@@ -64,15 +61,12 @@ export default function AdminProductsPage() {
 
       toast.success('Product deleted')
 
-      setProducts(prev =>
-        prev.filter(product => product._id !== id)
-      )
+      setProducts(prev => prev.filter(p => p._id !== id))
     } catch {
       toast.error('Delete failed')
     }
   }
 
-  
   const handleEditClick = (product) => {
     setSelectedProduct(product)
     setFormData({
@@ -83,7 +77,6 @@ export default function AdminProductsPage() {
     })
   }
 
-  
   const handleUpdate = async () => {
     try {
       const res = await axios.put(
@@ -96,10 +89,8 @@ export default function AdminProductsPage() {
         toast.success('Product updated')
 
         setProducts(prev =>
-          prev.map(product =>
-            product._id === selectedProduct._id
-              ? res.data.product
-              : product
+          prev.map(p =>
+            p._id === selectedProduct._id ? res.data.product : p
           )
         )
 
@@ -112,134 +103,134 @@ export default function AdminProductsPage() {
 
   if (loading) {
     return (
-      <p className="text-center mt-20 text-lg font-medium text-gray-600">
-        Loading products...
-      </p>
+      <div className="min-h-screen bg-[#020b18] flex items-center justify-center">
+        <div className="text-sky-200/70">Loading products...</div>
+      </div>
     )
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-6 mt-10">
-      <h1 className="text-3xl font-bold text-center text-indigo-600 mb-8">
-        Admin Product Management
-      </h1>
+    <div className="min-h-screen bg-[#020b18] px-6 py-16">
 
-      
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Header */}
+      <div className="text-center mb-14">
+        <h1 className="text-4xl font-black font-['Orbitron',monospace] text-white">
+          Product <span className="text-cyan-400">Management</span>
+        </h1>
+        <p className="text-sky-200/60 mt-3">
+          Manage all products in your store
+        </p>
+      </div>
+
+      {/* Products Grid */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+
         {products.map(product => (
           <div
             key={product._id}
-            className="bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-6 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300"
+            className="bg-white/5 border border-cyan-400/20 backdrop-blur-xl rounded-3xl p-6 hover:border-cyan-400/40 hover:shadow-[0_0_25px_rgba(0,212,255,0.15)] transition-all duration-300"
           >
-            <h2 className="text-xl font-bold text-purple-700 mb-2">
+
+            <h2 className="text-xl font-bold text-white mb-3 font-['Orbitron',monospace] truncate">
               {product.name}
             </h2>
 
-            <p className="text-gray-700 mb-2 line-clamp-2">
+            <p className="text-sky-200/60 text-sm mb-4 line-clamp-2">
               {product.description}
             </p>
 
-            <p className="font-semibold text-indigo-700">
-              Price: ${product.price}
+            <p className="text-cyan-400 font-bold text-lg">
+              ${product.price}
             </p>
 
-            <p className="mb-4">
-              Stock:
-              <span
-                className={`ml-2 px-2 py-1 rounded-full text-sm font-semibold ${
-                  product.stock > 0
-                    ? 'bg-green-200 text-green-800'
-                    : 'bg-red-200 text-red-800'
-                }`}
-              >
+            <p className="text-sm text-sky-200/70 mt-2">
+              Stock:{' '}
+              <span className={product.stock > 0 ? "text-green-400" : "text-red-400"}>
                 {product.stock}
               </span>
             </p>
 
-            <div className="flex justify-between">
+            {/* Buttons */}
+            <div className="flex gap-3 mt-5">
+
               <button
                 onClick={() => handleEditClick(product)}
-                className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded-lg shadow"
+                className="flex-1 py-2 rounded-xl bg-yellow-400 text-black font-bold hover:scale-105 transition"
               >
                 Edit
               </button>
 
               <button
                 onClick={() => handleDelete(product._id)}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow"
+                className="flex-1 py-2 rounded-xl bg-red-500 text-white font-bold hover:scale-105 transition"
               >
                 Delete
               </button>
+
             </div>
           </div>
         ))}
+
       </div>
 
-      
+      {/* EDIT MODAL */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
-          <div className="bg-white p-8 rounded-2xl shadow-2xl w-96">
-            <h2 className="text-xl font-bold mb-4 text-indigo-600">
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+
+          <div className="w-full max-w-md bg-[#020b18] border border-cyan-400/20 rounded-3xl p-6">
+
+            <h2 className="text-xl font-bold text-cyan-400 mb-4 font-['Orbitron',monospace]">
               Update Product
             </h2>
 
             <input
-              type="text"
-              placeholder="Name"
-              className="w-full mb-3 p-2 border rounded"
+              className="w-full mb-3 px-4 py-3 rounded-xl bg-transparent border border-cyan-400/20 text-white"
               value={formData.name}
-              onChange={e =>
-                setFormData({ ...formData, name: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             />
 
             <input
               type="number"
-              placeholder="Price"
-              className="w-full mb-3 p-2 border rounded"
+              className="w-full mb-3 px-4 py-3 rounded-xl bg-transparent border border-cyan-400/20 text-white"
               value={formData.price}
-              onChange={e =>
-                setFormData({ ...formData, price: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, price: e.target.value })}
             />
 
             <input
               type="number"
-              placeholder="Stock"
-              className="w-full mb-3 p-2 border rounded"
+              className="w-full mb-3 px-4 py-3 rounded-xl bg-transparent border border-cyan-400/20 text-white"
               value={formData.stock}
-              onChange={e =>
-                setFormData({ ...formData, stock: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
             />
 
             <textarea
-              placeholder="Description"
-              className="w-full mb-4 p-2 border rounded"
+              className="w-full mb-4 px-4 py-3 rounded-xl bg-transparent border border-cyan-400/20 text-white"
               value={formData.description}
-              onChange={e =>
-                setFormData({ ...formData, description: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             />
 
-            <div className="flex justify-between">
+            <div className="flex gap-3">
+
               <button
                 onClick={() => setSelectedProduct(null)}
-                className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-lg"
+                className="flex-1 py-2 rounded-xl bg-gray-600 text-white"
               >
                 Cancel
               </button>
 
               <button
                 onClick={handleUpdate}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg"
+                className="flex-1 py-2 rounded-xl bg-cyan-400 text-black font-bold"
               >
                 Update
               </button>
+
             </div>
+
           </div>
         </div>
       )}
+
     </div>
   )
 }

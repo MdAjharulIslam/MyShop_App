@@ -1,6 +1,5 @@
 'use client'
-import { useRouter } from 'next/navigation' 
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export default function ProductCard({ product, isBestSeller, rank }) {
   const router = useRouter()
@@ -13,66 +12,77 @@ export default function ProductCard({ product, isBestSeller, rank }) {
   }
 
   return (
-    <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col group relative cursor-pointer"
-         onClick={() => router.push(`/allProducts/${product._id}`)}>
-      
-     
+    <div
+      onClick={() => router.push(`/allProducts/${product._id}`)}
+      className="bg-[#0b0f14] border border-cyan-400/10 rounded-2xl overflow-hidden flex flex-col cursor-pointer group transition-all duration-300 hover:border-cyan-400/30 hover:-translate-y-1 font-['DM_Sans',sans-serif]"
+    >
+
+      {/* Rank badge */}
       {isBestSeller && rank && (
-        <div className="absolute -top-3 -right-3 z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-xl text-sm font-bold shadow-lg flex items-center space-x-1">
-          <span>🏆 #{rank}</span>
+        <div className="absolute top-3 right-3 z-10 bg-cyan-400 text-[#020b18] px-3 py-1 rounded-lg text-[10px] font-['Orbitron',monospace] tracking-wide font-bold">
+          🏆 #{rank}
         </div>
       )}
 
-      
-      <div className="h-48 bg-gray-200 flex items-center justify-center relative overflow-hidden">
+      {/* Image */}
+      <div className="h-48 bg-[#111827] flex items-center justify-center overflow-hidden">
         {image ? (
-          <img 
-            src={image} 
+          <img
+            src={image}
             alt={name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
         ) : (
-          <span className="text-4xl text-gray-400">📦</span>
+          <span className="text-4xl text-gray-500">📦</span>
         )}
       </div>
 
-     
+      {/* Content */}
       <div className="p-4 flex flex-col flex-grow">
-        <h3 className="text-lg font-semibold mb-2 truncate text-gray-900">{name}</h3>
-        
-        <p className="text-blue-600 font-bold text-xl mb-2">${price?.toFixed(2) || '0.00'}</p>
-        
-       
-        <p className={`mb-4 font-medium text-sm ${
-          stock > 0 ? 'text-green-600' : 'text-red-600'
+
+        {/* Product name */}
+        <h3 className="text-base font-semibold text-white mb-2 truncate tracking-wide">
+          {name}
+        </h3>
+
+        {/* Price (brand accent style) */}
+        <p className="text-cyan-400 font-bold text-lg mb-2 font-['Orbitron',monospace]">
+          ${price?.toFixed(2) || '0.00'}
+        </p>
+
+        {/* Stock */}
+        <p className={`text-sm mb-3 font-medium ${
+          stock > 0 ? 'text-emerald-400' : 'text-red-400'
         }`}>
           {stock > 0 ? `In Stock: ${stock}` : 'Out of Stock'}
         </p>
 
-      
+        {/* Sold info */}
         {isBestSeller && totalSold && (
-          <div className="mb-4 p-2 bg-emerald-50 border border-emerald-200 rounded-lg">
-            <p className="text-emerald-700 font-semibold text-sm">
-              {totalSold.toLocaleString()} sold
-            </p>
-          </div>
+          <p className="mb-4 text-xs text-sky-200/60 tracking-wide">
+            {totalSold.toLocaleString()} sold
+          </p>
         )}
 
-        
+        {/* Button */}
         <div className="mt-auto">
           {stock > 0 ? (
             <button
               onClick={handleBooking}
-              className="w-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 hover:from-emerald-600 hover:scale-110 text-white py-2 px-4 rounded-xl font-medium transition-all duration-200 shadow-md hover:shadow-lg"
+              className="w-full bg-cyan-400 text-[#020b18] py-2.5 rounded-xl font-['Orbitron',monospace] text-[11px] tracking-widest font-bold transition-all hover:bg-cyan-300"
             >
-              🛒 Book Now
+              🛒 BOOK NOW
             </button>
           ) : (
-            <button disabled className="w-full bg-gray-400 text-white py-2 px-4 rounded-xl font-medium cursor-not-allowed">
+            <button
+              disabled
+              className="w-full bg-gray-700 text-gray-300 py-2.5 rounded-xl font-medium cursor-not-allowed"
+            >
               Out of Stock
             </button>
           )}
         </div>
+
       </div>
     </div>
   )

@@ -12,11 +12,12 @@ export default function AddProductPage() {
   const [description, setDescription] = useState('')
   const [price, setPrice] = useState('')
   const [stock, setStock] = useState('')
-   const [image, setImage] = useState(null)
+  const [image, setImage] = useState(null)
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     if (!name || !description || !price || !stock) {
       return toast.error('All fields are required ❌')
     }
@@ -24,13 +25,12 @@ export default function AddProductPage() {
     setLoading(true)
 
     try {
-      
       const formData = new FormData()
       formData.append('name', name)
       formData.append('description', description)
       formData.append('price', price)
       formData.append('stock', stock)
-       formData.append('image', image)
+      formData.append('image', image)
 
       const token = localStorage.getItem('adminToken')
 
@@ -50,73 +50,95 @@ export default function AddProductPage() {
         router.push('/admin-dashboard/products')
       }
     } catch (err) {
-      console.error(err)
       toast.error(err.response?.data?.message || 'Something went wrong ❌')
     } finally {
       setLoading(false)
     }
   }
 
- 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <h1 className="text-3xl font-bold mb-6 text-red-600">Add New Product</h1>
+    <div className="min-h-screen bg-[#020b18] flex items-center justify-center px-4 py-16">
 
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-6 rounded shadow-md max-w-lg mx-auto space-y-4"
-      >
-        <input
-          type="text"
-          placeholder="Product Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500"
-          required
-        />
+      {/* background glow removed (clean version) */}
+      
+      <div className="w-full max-w-2xl">
 
-        <textarea
-          placeholder="Product Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500"
-          required
-        />
+        {/* Header */}
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-black text-white font-['Orbitron',monospace]">
+            Add <span className="text-cyan-400">Product</span>
+          </h1>
+          <p className="text-sky-200/60 mt-3">
+            Create new product for your MyShop store
+          </p>
+        </div>
 
-        <input
-          type="number"
-          placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500"
-          required
-        />
-
-        <input
-          type="number"
-          placeholder="Stock Quantity"
-          value={stock}
-          onChange={(e) => setStock(e.target.value)}
-          className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500"
-          required
-        />
-
-         <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setImage(e.target.files[0])}
-          className="w-full"
-          required
-        /> 
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition-colors"
+        {/* Form Card */}
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white/5 border border-cyan-400/20 backdrop-blur-xl rounded-3xl p-8 space-y-5 shadow-2xl"
         >
-          {loading ? 'Adding Product...' : 'Add Product'}
-        </button>
-      </form>
+
+          <input
+            type="text"
+            placeholder="Product Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full px-5 py-4 rounded-xl bg-transparent border border-cyan-400/20 text-white placeholder-sky-300/40 focus:outline-none focus:border-cyan-400 transition"
+            required
+          />
+
+          <textarea
+            placeholder="Product Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full px-5 py-4 h-32 rounded-xl bg-transparent border border-cyan-400/20 text-white placeholder-sky-300/40 focus:outline-none focus:border-cyan-400 transition resize-none"
+            required
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <input
+              type="number"
+              placeholder="Price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              className="w-full px-5 py-4 rounded-xl bg-transparent border border-cyan-400/20 text-white placeholder-sky-300/40 focus:outline-none focus:border-cyan-400 transition"
+              required
+            />
+
+            <input
+              type="number"
+              placeholder="Stock"
+              value={stock}
+              onChange={(e) => setStock(e.target.value)}
+              className="w-full px-5 py-4 rounded-xl bg-transparent border border-cyan-400/20 text-white placeholder-sky-300/40 focus:outline-none focus:border-cyan-400 transition"
+              required
+            />
+          </div>
+
+          {/* File Upload */}
+          <div className="border border-dashed border-cyan-400/30 rounded-xl p-5 text-center">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+              className="text-sky-200/60"
+              required
+            />
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-4 rounded-xl font-bold font-['Orbitron',monospace] tracking-widest bg-cyan-400 text-[#020b18] hover:shadow-[0_0_25px_rgba(0,212,255,0.5)] hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50"
+          >
+            {loading ? 'ADDING PRODUCT...' : 'ADD PRODUCT'}
+          </button>
+
+        </form>
+      </div>
     </div>
   )
 }

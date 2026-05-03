@@ -10,7 +10,6 @@ export default function AdminOrdersPage() {
 
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
-  const [token, setToken] = useState(null)
 
   const fetchOrders = async (authToken) => {
     try {
@@ -34,34 +33,45 @@ export default function AdminOrdersPage() {
 
     if (!savedToken) {
       toast.error('Admin login required')
-      router.push('/login')
+      router.push('/admin-login')
       return
     }
 
-    setToken(savedToken)
     fetchOrders(savedToken)
   }, [])
 
   if (loading) {
     return (
-      <p className="text-center mt-20 text-lg font-medium text-gray-600">
-        Loading orders...
-      </p>
+      <div className="min-h-screen bg-[#020b18] flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-14 h-14 border-4 border-cyan-400/20 border-t-cyan-400 rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-sky-200/70 text-lg">Loading orders...</p>
+        </div>
+      </div>
     )
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6 mt-10">
-      <h1 className="text-3xl font-bold text-center text-purple-600 mb-8">
-        Admin Orders Management
-      </h1>
+    <div className="min-h-screen bg-[#020b18] px-6 py-16">
 
-      {orders.length === 0 ? (
-        <p className="text-center text-gray-500">
-          No orders found.
+      {/* Header */}
+      <div className="text-center mb-14">
+        <h1 className="text-4xl md:text-5xl font-black font-['Orbitron',monospace] text-white">
+          Admin <span className="text-cyan-400">Orders</span>
+        </h1>
+        <p className="text-sky-200/60 mt-3">
+          Manage all customer orders in real time
         </p>
+      </div>
+
+      {/* Empty State */}
+      {orders.length === 0 ? (
+        <div className="text-center text-sky-200/60">
+          No orders found.
+        </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+
           {orders.map(order => {
             const totalPrice =
               (order.product?.price || 0) * (order.stock || 0)
@@ -69,53 +79,59 @@ export default function AdminOrdersPage() {
             return (
               <div
                 key={order._id}
-                className="bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 p-6 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300"
+                className="bg-white/5 border border-cyan-400/20 backdrop-blur-xl rounded-3xl p-6 hover:border-cyan-400/40 hover:shadow-[0_0_25px_rgba(0,212,255,0.15)] transition-all duration-300"
               >
-                <h2 className="text-xl font-bold text-purple-700 mb-3">
+
+                {/* Product Name */}
+                <h2 className="text-xl font-bold text-white mb-4 font-['Orbitron',monospace] truncate">
                   {order.product?.name || 'Product Removed'}
                 </h2>
 
-                <div className="space-y-2 text-gray-700">
+                {/* Info */}
+                <div className="space-y-2 text-sky-200/70 text-sm">
+
                   <p>
-                    <span className="font-semibold">Customer:</span>{' '}
+                    <span className="text-cyan-400 font-semibold">Customer:</span>{' '}
                     {order.customer?.name || 'Unknown'}
                   </p>
 
                   <p>
-                    <span className="font-semibold">Email:</span>{' '}
+                    <span className="text-cyan-400 font-semibold">Email:</span>{' '}
                     {order.customer?.email || 'N/A'}
                   </p>
 
                   <p>
-                    <span className="font-semibold">Phone:</span>{' '}
+                    <span className="text-cyan-400 font-semibold">Phone:</span>{' '}
                     {order.phone}
                   </p>
 
                   <p>
-                    <span className="font-semibold">Quantity:</span>{' '}
+                    <span className="text-cyan-400 font-semibold">Quantity:</span>{' '}
                     {order.stock}
                   </p>
 
-                  <p className="text-indigo-700 font-bold text-lg">
+                  <p className="text-lg font-black text-cyan-400 mt-3">
                     Total: ${totalPrice}
                   </p>
 
                   <p>
-                    <span className="font-semibold">Remaining Stock:</span>{' '}
+                    <span className="text-cyan-400 font-semibold">Remaining Stock:</span>{' '}
                     {order.product?.stock ?? 0}
                   </p>
                 </div>
 
-                <div className="mt-4">
-                  <span className="px-3 py-1 bg-green-200 text-green-800 rounded-full text-sm font-semibold">
-                    Ordered
+                {/* Status */}
+                <div className="mt-5">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-cyan-400/10 text-cyan-400 border border-cyan-400/30">
+                    ORDERED
                   </span>
                 </div>
 
-                <p className="text-sm text-gray-500 mt-4">
-                  Ordered at:{' '}
+                {/* Date */}
+                <p className="text-xs text-sky-200/40 mt-5 border-t border-cyan-400/10 pt-4">
                   {new Date(order.createdAt).toLocaleString()}
                 </p>
+
               </div>
             )
           })}
